@@ -2,12 +2,13 @@ from random import choice
 from time import sleep
 
 
-def get_random_word():
-    words_list = ["banana","coffee","summer","winter","family",
+WORDS_LIST = ["banana","coffee","summer","winter","family",
                   "yello","school", "guitar","garden","doctor","computer",
                   "football","mountain","internet","elephant","notebook",
                   "birtday","beautiful","breakfast","chocolate" ]
-    secret_word = choice(words_list)
+
+def get_random_word():
+    secret_word = choice(WORDS_LIST)
     return secret_word
 
 def user_guess():
