@@ -22,7 +22,7 @@ def show_word_status(word_in_lst_version):
     return f"the status of word is:{" ".join(word_in_lst_version)}"
 
 def show_used_letters(used_letters):
-    return f"the used words are: {" ,".join(used_letters)}"
+    return f"the used wrong words are: {" ,".join(used_letters)}"
 
 def show_how_many_attempts_left(current_attempts):
     return f"you have left {current_attempts} attempts"
@@ -43,8 +43,8 @@ def update_masked_word(user_letter,masked_word,secret_word):
 def check_victory(masked_word):
     return "_" not in masked_word
 
-def check_if_used_letter(user_letter,used_letters):
-    return user_letter in used_letters                                           
+def check_if_used_letter(user_letter,used_letters,masked_word):
+    return user_letter in used_letters or user_letter in masked_word                                          
 
 def game_management():
     attempts = 7
@@ -55,21 +55,21 @@ def game_management():
     print(show_word_status(masked_word))
     while current_attempts:
         user_letter = user_guess()
-        if check_if_used_letter(user_letter,used_letters):
+        if check_if_used_letter(user_letter,used_letters,masked_word):
             print(f"""you used this letter
-{show_used_letters(used_letters)}""")
+{show_status_game(masked_word,current_attempts,used_letters)}""")
             continue
-        used_letters += user_letter
         if check_user_guess(user_letter,secret_word):
             update_masked_word(user_letter,masked_word,secret_word)
             if check_victory(masked_word):    
                 return f"""Congratulations, you guessed the whole word: '[{secret_word}]' 
 you used {attempts - current_attempts} from {attempts} attempts"""
             else:
-                            print(f"""Successful guess 
+                print(f"""Successful guess 
 {show_status_game(masked_word,current_attempts,used_letters)}""")      
         else:     
             current_attempts -= 1
+            used_letters += user_letter
             print(f"""booz, wrong guess! 
 {show_status_game(masked_word,current_attempts,used_letters)}""")
     return f"You failed, The game is over because you used all attempts the word was: '[{secret_word}]'"    
