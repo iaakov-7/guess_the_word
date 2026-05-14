@@ -3,9 +3,9 @@ from time import sleep
 
 
 WORDS_LIST = ["banana","coffee","summer","winter","family",
-                  "yello","school", "guitar","garden","doctor","computer",
+                  "yellow","school", "guitar","garden","doctor","computer",
                   "football","mountain","internet","elephant","notebook",
-                  "birtday","beautiful","breakfast","chocolate" ]
+                  "birthday","beautiful","breakfast","chocolate" ]
 
 def get_random_word():
     secret_word = choice(WORDS_LIST)
@@ -16,11 +16,11 @@ def user_guess():
     user_letter = input("Enter your guess (one Englisg letter)\n").lower()
     while not user_letter in abc_letters:
         print("One English letter only!")
-        user_letter = input("Enter your guess (one Englisg letter)\n").lower()
+        user_letter = input("Enter your guess (one English letter)\n").lower()
     return user_letter
 
 def show_word_status(word_in_lst_version):
-    return f"the status of word is:{" ".join(word_in_lst_version)}"
+    return f"the status of word is: {" ".join(word_in_lst_version)}"
 
 def show_used_letters(used_letters):
     return f"the used wrong words are: {" ,".join(used_letters)}"
@@ -71,7 +71,7 @@ you used {attempts - current_attempts} from {attempts} attempts"""
         else:     
             current_attempts -= 1
             used_letters += user_letter
-            print(f"""booz, wrong guess! 
+            print(f"""boo..., wrong guess! 
 {show_status_game(masked_word,current_attempts,used_letters)}""")
     return f"You failed, The game is over because you used all attempts the word was: '[{secret_word}]'"    
 
